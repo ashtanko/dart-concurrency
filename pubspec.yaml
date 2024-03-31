@@ -1,5 +1,5 @@
 name: dart_concurrency
-description: A sample command-line application.
+description: A is a sample command-line application that demonstrates the use of concurrency in Dart.
 version: 1.0.0
 # repository: https://github.com/my_org/my_repo
 

@@ -13,15 +13,27 @@
 
 include: package:lints/recommended.yaml
 
-# Uncomment the following section to specify additional rules.
+analyzer:
+  strong-mode:
+    implicit-casts: false
+  exclude: [build/**]
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+  errors:
+    todo: ignore
+    missing_return: error
+    dead_code: info
 
-# linter:
-#   rules:
-#     - camel_case_types
-
-# analyzer:
-#   exclude:
-#     - path/to/excluded/files/**
+linter:
+  rules:
+    - camel_case_types
+    - always_declare_return_types
+    - comment_references
+    - await_only_futures
+    - avoid_slow_async_io
+    - discarded_futures
 
 # For more information about the core and recommended set of lints, see
 # https://dart.dev/go/core-lints

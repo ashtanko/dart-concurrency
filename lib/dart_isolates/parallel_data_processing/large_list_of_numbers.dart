@@ -50,11 +50,12 @@ Future<List<int>> calculateSquaresParallel(List<int> data) async {
   return squares;
 }
 
-/// The function executed by each isolate to calculate the squares of the numbers in the given [chunk].
-/// The calculated squares are sent back to the main isolate using the [sendPort].
+/// Function to be executed in an isolate.
+/// It receives a message containing a chunk of data and a send port.
+/// It squares each number in the chunk and sends the squared chunk back through the send port.
 void isolateFunction(Map<String, dynamic> message) {
-  final List<int> chunk = message['data'];
-  final SendPort sendPort = message['sendPort'];
+  final List<int> chunk = message['data'] as List<int>;
+  final SendPort sendPort = message['sendPort'] as SendPort;
   final List<int> squaredChunk =
       chunk.map((number) => number * number).toList();
   sendPort.send(squaredChunk);

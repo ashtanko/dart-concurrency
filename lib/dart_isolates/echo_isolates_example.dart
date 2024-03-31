@@ -13,7 +13,7 @@ Future<String> echoIsolate(String message) async {
   sendPort.send([message, answer.sendPort]);
 
   // Wait for the response.
-  final response = await answer.first;
+  final response = await answer.first as Future<String>;
 
   return response;
 }
@@ -26,7 +26,7 @@ Future<SendPort> createIsolate() async {
   await Isolate.spawn(echo, receivePort.sendPort);
 
   // The 'echo' isolate sends its SendPort as the first message.
-  final sendPort = await receivePort.first;
+  final sendPort = await receivePort.first as Future<SendPort>;
 
   return sendPort;
 }
@@ -41,8 +41,8 @@ void echo(SendPort sendPort) {
 
   port.listen((message) {
     // Parse the message.
-    final String data = message[0];
-    final SendPort replyTo = message[1];
+    final String data = message[0] as String;
+    final SendPort replyTo = message[1] as SendPort;
 
     // Send a message back.
     replyTo.send('Echo: $data');
