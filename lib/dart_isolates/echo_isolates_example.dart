@@ -13,7 +13,7 @@ Future<String> echoIsolate(String message) async {
   sendPort.send([message, answer.sendPort]);
 
   // Wait for the response.
-  final response = await answer.first as Future<String>;
+  final response = await answer.first;
 
   return response;
 }
@@ -26,7 +26,7 @@ Future<SendPort> createIsolate() async {
   await Isolate.spawn(echo, receivePort.sendPort);
 
   // The 'echo' isolate sends its SendPort as the first message.
-  final sendPort = await receivePort.first as Future<SendPort>;
+  final sendPort = await receivePort.first;
 
   return sendPort;
 }

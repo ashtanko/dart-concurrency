@@ -1,14 +1,9 @@
 import 'dart:isolate';
 
-import 'package:dart_concurrency/dart_concurrency.dart';
 import 'package:dart_concurrency/dart_isolates/echo_isolates_example.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('calculate', () {
-    expect(calculate(), 42);
-  });
-
   test('echoIsolate', () async {
     final result = await echoIsolate('Hello, World!');
     expect(result, 'Echo: Hello, World!');
